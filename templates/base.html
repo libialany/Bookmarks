@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="row">
+    <div class="col-md-5">
+        <!-- MESSAGES  -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" style="min-height: 50px;" role="alert">
+            <p>{{ message }}</p>
+            <button  type="button" class="btn" data-dismiss="alert"  aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <!-- ENDMESSAGES -->
+        <!-- CARD -->
+        <div class="card">
+            <div class="card-body">
+                <form action="/add_bookmark" method="POST">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="link" placeholder="Link">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="name" placeholder="Name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- ENDCARD -->
+    </div>
+    <div class="col-md-7">
+        <!-- TABLE -->
+        <h1 style="color: rgb(241, 240, 234);">BOOKMARKS</h1>
+        {% if bookmarksList|length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <td scope="col">Name</td>
+                    <td scope="col">link</td>
+                    <td scope="col">Operation</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bookmark in bookmarksList %}
+                <tr>
+                    <td>{{ bookmark.name }}</td>
+                    <td>{{ bookmark.link }}</td>
+                    <td>
+                        <a class="btn btn-info" href="/edit_bookmark/{{bookmark.id}}" > Edit</a>
+                        <a class="btn btn-danger" href="/delete_bookmark/{{bookmark.id}}" onclick="return confirm('Are you sure to delete?')" class="href"> Delete </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        <!-- ENDTABLE -->
+    </div>
+</div>
+
+
+{% endblock %}
