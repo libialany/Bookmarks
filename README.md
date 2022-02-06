@@ -18,11 +18,17 @@ General usage:
 * Windows: env\Scripts\activate
 * Linux: . env/bin/activate
 
-Active the environment.
- 
+
+
+Active the environment. 
  ```source  env/Scripts/activate```
 
-What you want to do first is run the app.py script:
+clone this repo.
+
+Install:
+```pip install -r requirements.txt```
+
+What you want to do first  is run the app.py script:
 * Linux: 
 ```python app.py```
 
