@@ -1,12 +1,14 @@
+from dotenv import load_dotenv
+load_dotenv()
 from  flask import Flask,request,render_template,redirect,url_for,flash
 app= Flask(__name__)
 import os 
 # database
 import pymysql.cursors  
-connection = pymysql.connect(host= os.getenv('host'),
-user=    os.getenv('user'),
-password=os.getenv('password'),
-database=os.getenv('dbname'),
+connection = pymysql.connect(host= os.getenv('DB_HOST'),
+user=    os.getenv("DB_USER"),
+password=os.getenv("DB_PASSWD"),
+database=os.getenv("DB_NAME"),
 cursorclass=pymysql.cursors.DictCursor)  
 # end database configuration
 # configuration session
